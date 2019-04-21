@@ -12,14 +12,14 @@ RUN set -xe \
     && rm -rf /tmp/* \
     && apk del .memcached-deps .phpize-deps
 
-# ext-zip
+# zip
 RUN apk add --nocache --update zip zlib-dev \
     && docker-php-ext-install zip
 
-# ext-mysqli
+# mysqli
 RUN docker-php-ext-install mysqli
 
-# ext-gd
+# gd
 RUN apk add --no-cache --update libpng-dev \
     && docker-php-ext-install gd
 
