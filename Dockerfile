@@ -1,4 +1,6 @@
 FROM php:7.2.14-cli-alpine3.9
+
+# memcached
 ENV MEMCACHED_DEPS zlib-dev libmemcached-dev cyrus-sasl-dev
 RUN apk add --no-cache --update libmemcached-libs zlib
 RUN set -xe \
@@ -9,3 +11,17 @@ RUN set -xe \
     && rm -rf /usr/share/php7 \
     && rm -rf /tmp/* \
     && apk del .memcached-deps .phpize-deps
+
+# ext-zip
+RUN apk add --nocache --update zip zlib-dev \
+    && docker-php-ext-install zip
+
+# ext-mysqli
+RUN docker-php-ext-install mysqli
+
+# ext-gd
+RUN apk add --no-cache --update libpng-dev \
+    && docker-php-ext-install gd
+
+ENV BASE_PATH /opt/raksul
+WORKDIR $BASE_PATH
