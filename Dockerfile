@@ -29,5 +29,9 @@ RUN docker-php-ext-install pdo_mysql
 # git
 RUN apk add --no-cache --upate git
 
+# php.ini settings
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+ADD php.ini $PHP_INI_DIR/conf.d/php.ini
+
 ENV BASE_PATH /opt/raksul
 WORKDIR $BASE_PATH
