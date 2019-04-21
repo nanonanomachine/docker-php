@@ -23,5 +23,8 @@ RUN docker-php-ext-install mysqli
 RUN apk add --no-cache --update libpng-dev \
     && docker-php-ext-install gd
 
+# pdo-mysql
+RUN docker-php-ext-install pdo_mysql
+
 ENV BASE_PATH /opt/raksul
 WORKDIR $BASE_PATH
