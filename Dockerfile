@@ -26,5 +26,8 @@ RUN apk add --no-cache --update libpng-dev \
 # pdo-mysql
 RUN docker-php-ext-install pdo_mysql
 
+# git
+RUN apk add --no-cache --upate git
+
 ENV BASE_PATH /opt/raksul
 WORKDIR $BASE_PATH
